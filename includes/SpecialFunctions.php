@@ -1,5 +1,5 @@
 <?php
-include "../DbConnection.php";
+include "DbConnection.php";
 
 function encrypt ($password) {
     $options = [
@@ -64,10 +64,39 @@ function serverError() {
     }
  }
 
+
+ function execute($sql){
+
+    try {
+        $res=$GLOBALS['conn']->query($sql);
+
+        return [
+            "success" => true,
+            "msg" => "Successfully Saved!"
+        ];
+
+
+    } catch (\Throwable $th) { 
+        return serverError(); 
+    }
+      
+ 
+}
+
  function sessionStart($data) {
     session_start();
     $_SESSION['authCredentials'] = $data;
     
+ }
+
+ function sessionEnd() {
+    session_start();
+ session_destroy();
+    
+ }
+
+ function checkAuth () {
+    return isset( $_SESSION['authCredentials']);
  }
 
 ?>

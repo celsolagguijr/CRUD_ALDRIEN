@@ -68,29 +68,45 @@ function loadUsers ()  {
 }
 
 
-// function create($data) {
+function create($data) {
+
+    $fName = $data["fName"];
+    $lName = $data["lName"];
+    $uName = $data["uName"];
+    $pass = encrypt($data["password"]);
+
+    $q = "INSERT INTO users set FirstName ='$fName', LastName='$lName' , Username='$uName', `Password` ='$pass';";
+    return execute($q);
+    // echo json_encode( create(["fName" => "celso","lName" => "laggui","uName" => "sample","password" =>"admin"]))
+}
 
 
-
-
+function edit($data) {
     
+    $id = $data["id"];
+    $fName = $data["fName"];
+    $lName = $data["lName"];
+    $uName = $data["uName"];
+
+    //UPDATE SQL
+    $q = "UPDATE users SET FirstName ='$fName', LastName='$lName' , Username='$uName' WHERE  id = '$id'";
+    return execute($q);
 
 
-
-// }
-
-
-// function edit($data) {
-
-// }
+}
 
 
-// function delete($data) {
+function delete($id) {
+    //delete SQL
+    $q = "DELETE FROM users WHERE id ='$id'";
+    return execute($q);
 
-// }
+}
 
 
-// function connect($id) {
+// echo json_encode( edit(["fName" => "celso","lName" => "laggui","uName" => "sss","password" =>"admin","id" => 1]))
+
+// function connect($id) { 
 
 // }
 
