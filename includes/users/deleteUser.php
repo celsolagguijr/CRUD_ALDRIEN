@@ -1,4 +1,4 @@
-<?php
+2<?php
 
 include './actions.php';
 
@@ -7,7 +7,7 @@ $data = json_decode(file_get_contents('php://input'), true); //get data
 
 
 
-if(!isset($data['username']) || !isset($data['password'])){
+if(!isset($data['id'])){
     echo json_encode([
         "success" => false,
         "code" => 403,
@@ -18,4 +18,4 @@ if(!isset($data['username']) || !isset($data['password'])){
 }
 
 
-echo login($data['username'] ,$data['password']);
+echo json_encode(delete($data));

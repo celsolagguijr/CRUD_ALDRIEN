@@ -96,18 +96,40 @@ function edit($data) {
 }
 
 
-function delete($id) {
+function delete($data) {
     //delete SQL
+    $id = $data["id"];
     $q = "DELETE FROM users WHERE id ='$id'";
     return execute($q);
 
 }
 
 
-// echo json_encode( edit(["fName" => "celso","lName" => "laggui","uName" => "sss","password" =>"admin","id" => 1]))
+function search($data){
 
-// function connect($id) { 
+    $txtSearch = $data["txtSearch"];
 
-// }
+    $q="SELECT id,FirstName,LastName,UserName  FROM users WHERE FirstName LIKE '%$txtSearch%' OR LastName LIKE '%$txtSearch%' OR UserName LIKE '%$txtSearch%'";
+
+
+     //run sql
+     $result = runSQL($q); 
+
+     //server error
+     if(!$result["success"]){
+         return json_encode($result);
+     }
+ 
+     //correct credentials
+     return json_encode( [
+         "success" => true,
+         "code" => 200,
+         "msg" => "Success",
+         "data" => $result['data']
+     ]);
+
+}
+
+
 
 ?>

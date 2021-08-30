@@ -30,6 +30,8 @@
     <div class="container">
         <!-- page content here! -->
         <?php include './content.php' ?>
+        <?php include './addModal.php' ?>
+        <?php include './editModal.php' ?>
         <!-- page content here! -->
     </div>
 
